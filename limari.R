@@ -1,30 +1,31 @@
+ <- NULL
+datos22
 
-names_row <- df_sin_filas1y2[1,]
-df_sin_filas1y2 <- daIV[-c(1, 2, 3), ]
-df <- df_sin_filas1y2
-df
-nombres_columnas <- unlist(df[1, ])
-datos <- df[-1, ]
-colnames(datos) <- nombres_columnas
-rownames(datos) <- NULL
-datos
-
-#Hay que trabajar con el dataframe datos
+#Hay que trabajar con el dataframe datos222
 ?unique
-unique(datos$Cuenca)
+unique(datos2$Cuenca)
+unique(datos2$Fuente)
+limariyotros <- subset(datos2, datos2$Cuenca == c("Rio Limari")|datos2$Cuenca == c("Costeras entre Elqui y Limari")| datos2$Cuenca == c("Costeras entre R.Limari y R.Choapa"))
+soloLimari <- subset(datos2, datos2$Cuenca == c("Rio Limari"))
 
-limariyotros <- subset(datos, datos$Cuenca == c("Rio Limari")|datos$Cuenca == c("Costeras entre Elqui y Limari")| datos$Cuenca == c("Costeras entre R.Limari y R.Choapa"))
-soloLimari <- subset(datos, datos$Cuenca == c("Rio Limari"))
 nrow(soloLimari)
 nrow(limariyotros)
 
-conteo <- tapply(datos$Cuenca, datos$Cuenca, length)
+conteo <- tapply(datos2$Cuenca, datos2$Cuenca, length)
 conteo
 
-nrow(datos$Cuenca)
-?tapply
+soloLimari
+#Guardar el archivo con datos2
+#write.csv(datos2, file = "C:\\Users\\mauri\\Desktop\\Inseguridad Hidrica\\datos2.csv", row.names = TRUE)
+unique(soloLimari$Naturaleza.del.Agua)
+soloLimari
+soloLimari$Naturaleza.del.Agua
+soloLimari$NaturCategory <- as.factor(soloLimari$Naturaleza.del.Agua)
+#a
+plot(soloLimari$Naturaleza.del.Agua, main = "Numero de DAA por Naturaleza del agua", ylab = "Cantidad", xlab = "Tipo", col="lightblue" )
+?plot
+table(soloLimari$NaturCategory)
 
-
-limari
-#limari<- tapply(limari$, limari$ )
-write.csv(datos, file = "C:\\Users\\mauri\\Desktop\\Inseguridad Hidrica\\datos.csv", row.names = TRUE)
+#queria saber cuantos NA habian en Naturaleza del agua, habia uno solo. 
+#resumen_otros <- sapply(limari$NaturAgua, function(x) sum(!is.na(x)))
+#sum(resumen_otros)
